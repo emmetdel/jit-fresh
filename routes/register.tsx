@@ -2,6 +2,7 @@ import { GoogleLoginButton } from "../components/GoogleLoginButton.tsx";
 import { useSignal } from "@preact/signals";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { redirect, redirectWithError } from "../helpers/redirect.ts";
+import { Button } from "../components/Button.tsx";
 
 export const handler: Handlers = {
   async POST(req) {
@@ -49,24 +50,22 @@ export default function Register(props: PageProps) {
   const error = useSignal<string | null>(props.url.searchParams.get("error"));
 
   return (
-    <div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="min-h-screen bg-background flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-text-primary">
           Create your account
         </h2>
       </div>
 
       <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div class="bg-card py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form class="space-y-6" method="POST">
-            {error && (
-              <div class="text-red-600 text-sm text-center">{error}</div>
-            )}
+            {error && <div class="text-error text-sm text-center">{error}</div>}
 
             <div>
               <label
                 htmlFor="email"
-                class="block text-sm font-medium text-gray-700"
+                class="block text-sm font-medium text-text-secondary"
               >
                 Email address
               </label>
@@ -77,7 +76,7 @@ export default function Register(props: PageProps) {
                   type="email"
                   required
                   value={email}
-                  class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  class="appearance-none block w-full px-3 py-2 border border-border rounded-md shadow-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                 />
               </div>
             </div>
@@ -85,7 +84,7 @@ export default function Register(props: PageProps) {
             <div>
               <label
                 htmlFor="password"
-                class="block text-sm font-medium text-gray-700"
+                class="block text-sm font-medium text-text-secondary"
               >
                 Password
               </label>
@@ -96,7 +95,7 @@ export default function Register(props: PageProps) {
                   type="password"
                   required
                   value={password}
-                  class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  class="appearance-none block w-full px-3 py-2 border border-border rounded-md shadow-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                 />
               </div>
             </div>
@@ -104,7 +103,7 @@ export default function Register(props: PageProps) {
             <div>
               <label
                 htmlFor="confirmPassword"
-                class="block text-sm font-medium text-gray-700"
+                class="block text-sm font-medium text-text-secondary"
               >
                 Confirm Password
               </label>
@@ -115,28 +114,23 @@ export default function Register(props: PageProps) {
                   type="password"
                   required
                   value={confirmPassword}
-                  class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  class="appearance-none block w-full px-3 py-2 border border-border rounded-md shadow-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                 />
               </div>
             </div>
 
             <div>
-              <button
-                type="submit"
-                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Register
-              </button>
+              <Button class="w-full" variant="primary">Register</Button>
             </div>
           </form>
 
           <div class="mt-6">
             <div class="relative">
               <div class="absolute inset-0 flex items-center">
-                <div class="w-full border-t border-gray-300" />
+                <div class="w-full border-t border-border" />
               </div>
               <div class="relative flex justify-center text-sm">
-                <span class="px-2 bg-white text-gray-500">
+                <span class="px-2 bg-card text-text-secondary">
                   Or continue with
                 </span>
               </div>

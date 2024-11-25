@@ -1,5 +1,6 @@
 import { PageProps } from "$fresh/server.ts";
 import { useSignal } from "@preact/signals";
+import { Button } from "../components/Button.tsx";
 
 export default function Login(props: PageProps) {
   const email = useSignal(props.url.searchParams.get("email") || "");
@@ -7,14 +8,14 @@ export default function Login(props: PageProps) {
   const error = useSignal("");
 
   return (
-    <div class="min-h-screen flex items-center justify-center bg-gray-50">
-      <div class="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="max-w-md w-full space-y-8 p-8 bg-card rounded-lg shadow-md">
         <div>
-          <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
+          <h2 class="mt-6 text-center text-3xl font-bold text-text-primary">
             Sign in to your account
           </h2>
           {error.value && (
-            <div class="mt-4 text-center text-sm text-red-600">
+            <div class="mt-4 text-center text-sm text-error">
               {error.value}
             </div>
           )}
@@ -31,7 +32,7 @@ export default function Login(props: PageProps) {
                 type="email"
                 required
                 value={email}
-                class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                class="appearance-none rounded-md relative block w-full px-3 py-2 border border-border placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                 placeholder="Email address"
               />
             </div>
@@ -45,7 +46,7 @@ export default function Login(props: PageProps) {
                 type="password"
                 required
                 value={password}
-                class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                class="appearance-none rounded-md relative block w-full px-3 py-2 border border-border placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                 placeholder="Password"
               />
             </div>
@@ -57,11 +58,11 @@ export default function Login(props: PageProps) {
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
-                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                class="h-4 w-4 text-primary focus:ring-primary border-border rounded"
               />
               <label
                 htmlFor="remember-me"
-                class="ml-2 block text-sm text-gray-900"
+                class="ml-2 block text-sm text-text-secondary"
               >
                 Remember me
               </label>
@@ -70,7 +71,7 @@ export default function Login(props: PageProps) {
             <div class="text-sm">
               <a
                 href="#"
-                class="font-medium text-blue-600 hover:text-blue-500"
+                class="font-medium text-primary hover:text-primary-hover"
               >
                 Forgot your password?
               </a>
@@ -78,12 +79,17 @@ export default function Login(props: PageProps) {
           </div>
 
           <div>
-            <button
-              type="submit"
-              class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            <Button class="w-full" variant="primary">Sign in</Button>
+          </div>
+
+          <div class="text-center">
+            <span class="text-text-secondary">Don't have an account?</span>
+            <a
+              href="/register"
+              class="ml-2 font-medium text-primary hover:text-primary-hover"
             >
-              Sign in
-            </button>
+              Sign up
+            </a>
           </div>
         </form>
       </div>
